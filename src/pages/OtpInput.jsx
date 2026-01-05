@@ -1,7 +1,8 @@
 import { useRef, useEffect, useState } from "react";
 
 export default function OtpInput() {
-  const otpLength = 4;
+  const otpLength = 6;
+  const regex = /^[0-9]?$/;
 
   // State to store OTP digits as an array
   const [otp, setOtp] = useState(Array(otpLength).fill(""));
@@ -17,41 +18,43 @@ export default function OtpInput() {
   // Handle value change for each OTP input
   const handleChange = (e, index) => {
     const value = e.target.value;
+    if (!regex.test(value)) {
+      return;
+    }
 
-    // Allow only a single numeric digit (0–9)
-    if (!/^[0-9]?$/.test(value)) return;
+    if (index > 0 && inputRefs.current[index - 1].value === "") {
+      // inputRefs.current[index]?.blur();
+      return;
+    }
 
-    // Prevent entering value if previous input is empty (sequential rule)
-    if (index > 0 && otp[index - 1] === "") return;
-
-    // Create a copy of current OTP
     const newOtp = [...otp];
     newOtp[index] = value;
     setOtp(newOtp);
 
-    // Automatically move focus to next input if value is entered
-    if (value && index < otpLength - 1) {
+    //move to next input
+    if (index < otp.length - 1 && value) {
       inputRefs.current[index + 1].focus();
     }
+
+    if (index === otp.length - 1) {
+      inputRefs.current[index].blur();
+    }
+
+    console.log(otp);
   };
 
   // Handle backspace behavior
   const handleKeyDown = (e, index) => {
-    // If current input is empty and backspace is pressed,
-    // move focus to the previous input
-    if (e.key === "Backspace" && !otp[index] && index > 0) {
+    if (e.key === "Backspace" && index > 0 && !otp[index]) {
       inputRefs.current[index - 1].focus();
     }
   };
 
   // Prevent clicking on inputs out of sequence
   const handleClick = (index) => {
-    // Allow click only if all previous fields are filled
-    for (let i = 0; i < index; i++) {
-      if (otp[i] === "") {
-        inputRefs.current[i].focus();
-        return;
-      }
+    if (index > 0 && inputRefs.current[index - 1].value === "") {
+      inputRefs.current[index]?.blur();
+      return;
     }
   };
 
@@ -60,11 +63,7 @@ export default function OtpInput() {
 
   // Handle OTP submission
   const handleSubmit = () => {
-    const enteredOtp = otp.join("");
-    console.log("Submitted OTP:", enteredOtp);
-
-    // Example: API call can be triggered here
-    // verifyOtp(enteredOtp);
+    console.log("My otp", otp.join(""))
   };
 
   return (
@@ -89,9 +88,7 @@ export default function OtpInput() {
               textAlign: "center",
               fontSize: "18px",
               cursor:
-                index === 0 || otp[index - 1] !== ""
-                  ? "text"
-                  : "not-allowed",
+                index === 0 || otp[index - 1] !== "" ? "text" : "not-allowed",
             }}
           />
         ))}
