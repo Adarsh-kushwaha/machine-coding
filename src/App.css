@@ -2,3 +2,22 @@
   margin: 0;
   padding: 0;
 }
+
+
+.tabParent{
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  gap: 6px;
+  width: "100%";
+
+}
+
+.tab{
+  padding: 4px;
+}
+
+.selctedTab{
+  background-color: aqua;
+  color: black;
+}
