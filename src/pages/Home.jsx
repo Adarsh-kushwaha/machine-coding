@@ -1,7 +1,13 @@
-export default function Home() {
+import { Link } from "react-router-dom";
+
+function Home() {
+
     return (
         <div>
-            <h1>Home</h1>
+            <h2>List Of All Machine Coding Problems</h2>
+            <Link to="/toast">Toast</Link>
         </div>
     )
 }
+
+export default Home;

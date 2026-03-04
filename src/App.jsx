@@ -1,23 +1,20 @@
 
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
-import MultiForm from './pages/MultiForm'
 import Home from './pages/Home'
-import OtpInput from './pages/OtpInput'
-import NestedCheckbox from './pages/NestedCheckbox'
+import Toast from './pages/Toast'
+import ToastProvider from './provider/ToastProvider'
+
 
 function App() {
 
-
   return (
-    <>
+    <ToastProvider>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/multi-form" element={<MultiForm />} />
-        <Route path="/otp" element ={<OtpInput/>}/>
-        <Route path="/nested-checkbox" element ={<NestedCheckbox/>}/>
+        <Route path="/toast" element={<Toast />} />
       </Routes>
-    </>
+    </ToastProvider>
   )
 }
 
