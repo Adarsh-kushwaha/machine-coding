@@ -20,7 +20,7 @@ function ToastProvider({ children }) {
     }
 
 
-    const addNotification = useCallback(({ title, description, type, position, cta }) => {
+    const addNotification = useCallback(({ title, description, type, position, cta, duration = 3000 }) => {
         const id = Date.now().toString();
         const newToast = {
             id,
@@ -30,7 +30,7 @@ function ToastProvider({ children }) {
             position,
             cta,
             progress: 100,
-            duration: 3000,
+            duration,
             preventProgress: false
 
         }
@@ -40,14 +40,18 @@ function ToastProvider({ children }) {
 
     function handlePauseOnHover(id) {
         setToastList((prev) => prev.map((toast) => {
-            toast.preventProgress = toast.id === id ? true : false;
+            if (toast.id === id) {
+                return { ...toast, preventProgress: true };
+            }
             return toast;
         }))
     }
 
     function handleResumeOnHover(id) {
         setToastList((prev) => prev.map((toast) => {
-            toast.preventProgress = toast.id === id ? false : false;
+            if (toast.id === id) {
+                return { ...toast, preventProgress: false };
+            }
             return toast;
         }))
     }
@@ -70,24 +74,20 @@ function ToastProvider({ children }) {
 
 
     useEffect(() => {
-        const intervalTime = 1000
+        const intervalTime = 10
         const interval = setInterval(() => {
             setToastList((prev) => prev.map((toast) => {
-                const currentProgress = toast.progress;
-                const duration = toast.duration
-                const hudredthOfDuration = duration / 1000;
-                const percentageToReduce = 100 / hudredthOfDuration;
-
                 if (toast.preventProgress) {
                     return toast;
                 }
 
-                toast.progress = currentProgress - percentageToReduce;
+                const percentageToReduce = (intervalTime / toast.duration) * 100;
+                const newProgress = toast.progress - percentageToReduce;
 
-                if (toast.progress <= 0) {
+                if (newProgress <= 0) {
                     return null;
                 }
-                return toast;
+                return { ...toast, progress: newProgress };
             }).filter(Boolean))
         }, intervalTime)
         return () => clearInterval(interval)

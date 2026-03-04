@@ -145,7 +145,6 @@
 .toast-progress {
     height: 4px;
     border-radius: 5px;
-    transition: width 10ms linear;
 }
 
 .toast-progress[data-type="success"] {

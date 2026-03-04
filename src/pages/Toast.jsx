@@ -18,9 +18,10 @@ function Toast() {
     const handleAddToast = () => {
         toastService.showToast({
             title: "Success",
-            description: "This is a success notification",
-            type: "success",
+            description: "This stays for 5 seconds and moves smoothly",
+            type: "warning",
             position: "top-right",
+            duration: 3000
         })
     }
 
