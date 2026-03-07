@@ -8,6 +8,7 @@ function Home() {
             <Link to="/toast">Toast</Link>
             <Link to="/infinite-scroll">Infinite Scroll</Link>
             <Link to="/intersection-observer">Intersection Observer</Link>
+            <Link to="/popover">Popover</Link>
         </div>
     )
 }
