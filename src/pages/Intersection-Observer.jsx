@@ -1,13 +1,15 @@
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
+import { useIntersectionObserver } from "../hooks/use-intersection-observer"
 
 function MineIntersectionObserver() {
     const [list, setList] = useState(new Array(20).fill("This is list item"))
     const [loading, setLoading] = useState(false)
-    const elementRef = useRef([])
+    const lastSecondElementRef = useRef(null)
 
     const THRESHOLD = 1000
 
     function loadMore() {
+        if (loading) return;
         setLoading(true)
         setTimeout(() => {
             setList((prev) => [...prev, ...new Array(20).fill("This is infinite scroll item")])
@@ -15,34 +17,31 @@ function MineIntersectionObserver() {
         }, 1000)
     }
 
-    useEffect(() => {
-        const observer = new IntersectionObserver(function (entries) {
-            console.log(entries[0].isIntersecting)
-            if (entries[0].isIntersecting) {
-                observer.unobserve(entries[0].target);
-                loadMore()
-            }
-        })
-        const lastSecondElement = elementRef.current[elementRef.current.length - 2]
-        observer.observe(lastSecondElement)
-
-        return () => {
-            observer.disconnect();
+    useIntersectionObserver({
+        targetRef: lastSecondElementRef,
+        onIntersect: loadMore,
+        enabled: !loading,
+        options: {
+            root: document.querySelector(".list-container2")
         }
-    }, [list.length])
+    })
 
     return (
         <div>
             <h1>Intersection Observer</h1>
-            <div className="list-container">
+            <div className="list-container2">
                 {list.map((item, index) => {
                     return (
-                        <div ref={(el) => { elementRef.current[index] = el }} key={index} className="list">
+                        <div
+                            ref={index === list.length - 2 ? lastSecondElementRef : null}
+                            key={index}
+                            className="list2"
+                        >
                             {`${item} ${index + 1}`}
                         </div>
                     )
                 })}
-                {loading && <div className="list">Loading...</div>}
+                {loading && <div className="list2">Loading...</div>}
             </div>
         </div>
     )

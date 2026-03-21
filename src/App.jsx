@@ -8,6 +8,8 @@ import InfiniteScroll from './pages/Infinite-scroll'
 import MineIntersectionObserver from './pages/Intersection-Observer'
 import PopoverRender from './pages/Popover'
 import { PopoverProvider } from './provider/PopoverProvider'
+import VirtualisedList from './pages/Virtualised-List'
+import ReusableAutoComplete from './pages/ReusableAutoComplete'
 
 
 
@@ -22,6 +24,8 @@ function App() {
           <Route path="/infinite-scroll" element={<InfiniteScroll />} />
           <Route path="/intersection-observer" element={<MineIntersectionObserver />} />
           <Route path="/popover" element={<PopoverRender />} />
+          <Route path="/virtualised-list" element={<VirtualisedList />} />
+          <Route path='/autocomplete' element={<ReusableAutoComplete />} />
         </Routes>
       </ToastProvider>
     </PopoverProvider>

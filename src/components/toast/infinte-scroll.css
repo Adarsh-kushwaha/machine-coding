@@ -1,5 +1,5 @@
-.list-container {
-    height: 70vh;
+.list-container2 {
+    height: 80vh;
     background: #ffcece;
     overflow: auto;
     border: 2px solid #000;
@@ -9,9 +9,10 @@
 }
 
 
-.list {
-    height: 50px;
+.list2 {
+    height: auto;
     font-size: 20px;
+    flex-direction: column;
     padding: 14px;
     background: #533c3c;
     border-bottom: 1px solid #000;

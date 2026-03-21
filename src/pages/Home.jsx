@@ -9,6 +9,8 @@ function Home() {
             <Link to="/infinite-scroll">Infinite Scroll</Link>
             <Link to="/intersection-observer">Intersection Observer</Link>
             <Link to="/popover">Popover</Link>
+            <Link to="/virtualised-list">Virtualised List</Link>
+            <Link to="/autocomplete">Autocomplete</Link>
         </div>
     )
 }
