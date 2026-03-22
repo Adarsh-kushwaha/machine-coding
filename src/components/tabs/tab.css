@@ -1,0 +1,42 @@
+.tablist-container {
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    gap: 10px;
+    width: 100%;
+
+}
+
+.tablist-container button {
+    background-color: rgb(5, 88, 61);
+    padding: 14px;
+    width: 100px;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.tablist-container button:hover {
+    background-color: aqua;
+    color: black;
+}
+
+.tablist-container button[data-selected="true"] {
+    background-color: aqua;
+    color: black;
+}
+
+.tab-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.tab-content {
+    background-color: aliceblue;
+    color: black;
+    width: 400px;
+    height: 100px;
+    display: flex;
+    border-radius: 10px;
+}

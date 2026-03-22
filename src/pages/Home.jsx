@@ -12,6 +12,7 @@ function Home() {
             <Link to="/virtualised-list">Virtualised List</Link>
             <Link to="/autocomplete">Autocomplete</Link>
             <Link to="/accordion">Accordion</Link>
+            <Link to="/tabs">Tabs</Link>
         </div>
     )
 }
