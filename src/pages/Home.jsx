@@ -11,6 +11,7 @@ function Home() {
             <Link to="/popover">Popover</Link>
             <Link to="/virtualised-list">Virtualised List</Link>
             <Link to="/autocomplete">Autocomplete</Link>
+            <Link to="/accordion">Accordion</Link>
         </div>
     )
 }

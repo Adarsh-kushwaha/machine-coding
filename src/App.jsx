@@ -10,6 +10,7 @@ import PopoverRender from './pages/Popover'
 import { PopoverProvider } from './provider/PopoverProvider'
 import VirtualisedList from './pages/Virtualised-List'
 import ReusableAutoComplete from './pages/ReusableAutoComplete'
+import { Accordion } from './pages/Accordion'
 
 
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="/popover" element={<PopoverRender />} />
           <Route path="/virtualised-list" element={<VirtualisedList />} />
           <Route path='/autocomplete' element={<ReusableAutoComplete />} />
+          <Route path='/accordion' element={<Accordion />} />
         </Routes>
       </ToastProvider>
     </PopoverProvider>

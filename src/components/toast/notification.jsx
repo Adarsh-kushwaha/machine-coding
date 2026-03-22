@@ -52,8 +52,6 @@ function Notification({
         handleResumeOnHover(id);
     }
 
-
-
     return (
         <div className={className} data-position={position} data-type={type} onAnimationEnd={animationEndHandler} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
             <button className='toast-cancel-btn' onClick={handleRemove} >&times;</button>
