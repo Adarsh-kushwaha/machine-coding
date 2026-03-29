@@ -3,25 +3,16 @@ import { NestedDropDown } from "../components/dropdown/NestedDropDown"
 
 const menuData = [
     {
+        id: 1,
         label: "File",
-        children: [
-            { label: "New" },
-            { label: "Open" },
-            {
-                label: "Recent",
-                children: [
-                    { label: "Project A" },
-                    { label: "Project B" },
-                ],
-            },
-        ],
     },
     {
+        id: 2,
         label: "Edit",
-        children: [
-            { label: "Undo" },
-            { label: "Redo" },
-        ],
+    },
+    {
+        id: 3,
+        label: "setting",
     },
 ];
 
@@ -40,13 +31,14 @@ export const DropDown = () => {
 
     const handleSelect = (item) => {
         console.log(`Selected => ${item}`)
+        handleCloseDialog()
     }
 
 
     return (
         <>
             <button onClick={handleOpenDialog}>Menu</button>
-            {showDialog && <NestedDropDown data={menuData} onSelect={handleSelect} />}
+            {showDialog && <NestedDropDown data={menuData} onSelect={handleSelect} onClose={handleCloseDialog} />}
         </>
     )
 }

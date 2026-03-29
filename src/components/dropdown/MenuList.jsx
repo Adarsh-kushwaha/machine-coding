@@ -5,6 +5,6 @@ export const Menulist = ({name, onSelect}) => {
     }
 
     return (
-        <button onCanPlay={handleSelectMenu}>{name}</button>
+        <button onClick={handleSelectMenu}>{name}</button>
     )
 }

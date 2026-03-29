@@ -73,6 +73,7 @@ function Content({ children, position = "right" }) {
             if (left + contentRect.width > windowWidth) left = windowWidth - contentRect.width - gap;
 
             setCoords({ top, left });
+            
             setActualPosition(newPos);
         }
     }, [open, position, triggerRef, contentRef]);
