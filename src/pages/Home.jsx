@@ -14,6 +14,8 @@ function Home() {
             <Link to="/accordion">Accordion</Link>
             <Link to="/tabs">Tabs</Link>
             <Link to="/react-memo">React Memo</Link>
+            <Link to="/dialog">Dialog</Link>
+            <Link to="/dropdown">Dropdown</Link>
         </div>
     )
 }

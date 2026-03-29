@@ -13,6 +13,8 @@ import ReusableAutoComplete from './pages/ReusableAutoComplete'
 import { Accordion } from './pages/Accordion'
 import { Tabs } from './pages/Tabs'
 import ReactMemo from './pages/ReactMemo'
+import { Dialog } from './pages/Dialog'
+import { DropDown } from './pages/Dropdown'
 
 
 
@@ -32,6 +34,8 @@ function App() {
           <Route path='/accordion' element={<Accordion />} />
           <Route path='/tabs' element={<Tabs />} />
           <Route path='/react-memo' element={<ReactMemo />} />
+           <Route path='/dialog' element={<Dialog />} />
+            <Route path='/dropdown' element={<DropDown />} />
         </Routes>
       </ToastProvider>
     </PopoverProvider>
