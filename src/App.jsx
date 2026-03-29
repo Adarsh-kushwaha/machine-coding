@@ -12,6 +12,7 @@ import VirtualisedList from './pages/Virtualised-List'
 import ReusableAutoComplete from './pages/ReusableAutoComplete'
 import { Accordion } from './pages/Accordion'
 import { Tabs } from './pages/Tabs'
+import ReactMemo from './pages/ReactMemo'
 
 
 
@@ -30,6 +31,7 @@ function App() {
           <Route path='/autocomplete' element={<ReusableAutoComplete />} />
           <Route path='/accordion' element={<Accordion />} />
           <Route path='/tabs' element={<Tabs />} />
+          <Route path='/react-memo' element={<ReactMemo />} />
         </Routes>
       </ToastProvider>
     </PopoverProvider>

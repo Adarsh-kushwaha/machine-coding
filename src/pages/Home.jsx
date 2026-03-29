@@ -13,6 +13,7 @@ function Home() {
             <Link to="/autocomplete">Autocomplete</Link>
             <Link to="/accordion">Accordion</Link>
             <Link to="/tabs">Tabs</Link>
+            <Link to="/react-memo">React Memo</Link>
         </div>
     )
 }
