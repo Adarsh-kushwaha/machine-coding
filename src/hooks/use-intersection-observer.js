@@ -23,5 +23,6 @@ export const useIntersectionObserver = ({ targetRef, onIntersect, options = {}, 
             }
             observer.disconnect();
         };
+
     }, [targetRef, onIntersect, enabled, options.root, options.rootMargin, options.threshold]);
 };

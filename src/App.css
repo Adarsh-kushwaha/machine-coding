@@ -4,7 +4,7 @@
 }
 
 
-.tabParent{
+.tabParent {
   display: flex;
   flex-direction: row;
   justify-items: center;
@@ -13,11 +13,11 @@
 
 }
 
-.tab{
+.tab {
   padding: 4px;
 }
 
-.selctedTab{
+.selctedTab {
   background-color: aqua;
   color: black;
 }

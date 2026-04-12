@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import "../components/toast/infinte-scroll.css"
 import { useFetch } from "../hooks/use-fetch"
 
@@ -8,42 +8,54 @@ export default function InfiniteScroll() {
     const [loading, setLoading] = useState(false)
     const { data } = useFetch("https://jsonplaceholder.typicode.com/posts", {}, true)
     const [counter, setCounter] = useState(10)
-
-    const THRESHOLD = 500
+    const scrollRef = useRef(null)
+    const THRESHOLD = 100
 
     function loadMore() {
+        if (loading) return
         setLoading(true)
+
         setTimeout(() => {
-            setList((prev) => [...prev, ...data.splice(0, counter)])
+            setList((prev) => {
+                const nextItems = data.slice(prev.length, prev.length + counter)
+                return [...prev, ...nextItems]
+            })
             setLoading(false)
-        }, 3000)
+        }, 1500)
     }
 
     useEffect(() => {
-        loadMore()
-    }, [data, counter])
+        if (data && data.length > 0 && list.length === 0) {
+            loadMore()
+        }
+    }, [data])
 
     useEffect(() => {
-        const scrollDom = document.querySelector(".list-container2")
-        const handleScroll = () => {
-            // console.log(scrollDom.scrollHeight, scrollDom.scrollTop, scrollDom.clientHeight)
-            const remainingScroll = scrollDom.scrollHeight - (scrollDom.scrollTop + scrollDom.clientHeight)
-            if (remainingScroll < THRESHOLD) {
-                setCounter((prev) => prev + 10)
-            }
+        const scrollRefDom = scrollRef.current;
+        let throttleTimer = false;
 
+        const handleScroll = () => {
+            if (loading || throttleTimer) return;
+
+            throttleTimer = true;
+            setTimeout(() => {
+                const remainingScroll = scrollRefDom.scrollHeight - (scrollRefDom.scrollTop + scrollRefDom.clientHeight)
+                if (remainingScroll < THRESHOLD) {
+                    console.log("Threshold reached, loading more...")
+                    loadMore()
+                }
+                throttleTimer = false;
+            }, 200); // 200ms throttle
         };
 
-        scrollDom.addEventListener("scroll", handleScroll);
-
-        return () => scrollDom.removeEventListener("scroll", handleScroll);
-    }, []);
-
+        scrollRefDom.addEventListener("scroll", handleScroll);
+        return () => scrollRefDom.removeEventListener("scroll", handleScroll);
+    }, [data, counter, loading]);
 
     return (
         <div>
             <h1>Infinite Scroll</h1>
-            <div className="list-container2" >
+            <div className="list-container2" ref={scrollRef} >
                 {list?.map((item, index) => {
                     return (
                         <div key={index} className="list2">

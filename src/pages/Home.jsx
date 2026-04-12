@@ -17,6 +17,7 @@ function Home() {
             <Link to="/dialog">Dialog</Link>
             <Link to="/dropdown">Dropdown</Link>
             <Link to="/carousel">Carousel</Link>
+            <Link to="/content-visibility">Content Visibility</Link>
         </div>
     )
 }

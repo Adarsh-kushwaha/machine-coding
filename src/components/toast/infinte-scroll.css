@@ -17,3 +17,16 @@
     background: #533c3c;
     border-bottom: 1px solid #000;
 }
+
+
+.list2-cv {
+    display: flex;
+    content-visibility: auto;
+    font-size: 20px;
+    flex-direction: column;
+    padding: 14px;
+    background: #533c3c;
+    border-bottom: 1px solid #000;
+    contain-intrinsic-size: 100px;
+    contain: layout paint style;
+}

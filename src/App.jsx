@@ -16,6 +16,7 @@ import ReactMemo from './pages/ReactMemo'
 import { Dialog } from './pages/Dialog'
 import { DropDown } from './pages/Dropdown'
 import Carousel from './pages/Carousel'
+import ContentVisibility from './pages/ContentVisibility'
 
 
 
@@ -38,6 +39,7 @@ function App() {
           <Route path='/dialog' element={<Dialog />} />
           <Route path='/dropdown' element={<DropDown />} />
           <Route path='/carousel' element={<Carousel />} />
+          <Route path='/content-visibility' element={<ContentVisibility />} />
         </Routes>
       </ToastProvider>
     </PopoverProvider>
