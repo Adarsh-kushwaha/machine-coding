@@ -16,6 +16,7 @@ function Home() {
             <Link to="/react-memo">React Memo</Link>
             <Link to="/dialog">Dialog</Link>
             <Link to="/dropdown">Dropdown</Link>
+            <Link to="/carousel">Carousel</Link>
         </div>
     )
 }
