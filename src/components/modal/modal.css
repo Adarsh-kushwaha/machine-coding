@@ -1,0 +1,71 @@
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: showModal 0.3s ease-in forwards;
+}
+
+.hide-modal {
+    animation: hideModal 0.3s ease-out forwards !important ;
+}
+
+.modal-content {
+    background-color: aliceblue;
+    color: black;
+    padding: 14px; 
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 14px;
+    z-index: 1000;
+    position: relative;
+
+}
+
+.modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(0, 0, 0);
+    opacity: 0.4;
+    z-index: 100;
+}
+
+.modal-cancel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: transparent;
+    border: none;
+    color: black;
+    padding: 8px;
+    font-weight: 600;
+    cursor: pointer;
+
+}
+
+@keyframes showModal {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes hideModal {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}

@@ -1,0 +1,15 @@
+.list-container {
+    width: 400px;
+    align-items: center;
+    background-color: aqua;
+    overflow-x: hidden;
+    border: 2px solid #fff;
+}
+
+.item {
+    background-color: rgb(255, 219, 172);
+    color: black;
+    padding: 8px;
+    width: 100%;
+    border: 1px solid;
+}

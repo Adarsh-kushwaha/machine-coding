@@ -1,0 +1,30 @@
+.kanban-container {
+  display: flex;
+  gap: 20px;
+}
+
+.kanban-column {
+  width: 250px;
+  min-height: 400px;
+  background: #f4f4f4;
+  color: black;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.card {
+  padding: 10px;
+  margin-bottom: 10px;
+  background: white;
+  cursor: grab;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+
+.card.grabbing {
+  opacity: 0.5;
+}
+
+.card.hover {
+  border: 2px dashed blue;
+}

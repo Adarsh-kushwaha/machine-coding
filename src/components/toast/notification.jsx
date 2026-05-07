@@ -1,73 +1,43 @@
-import './notification.css';
+import { useEffect, useState } from "react";
 
-function Notification({
-    id,
-    type = "info",
-    title = "",
-    description = "",
-    onRemove,
-    cta,
-    position = "top-right",
-    onUpdate = () => { },
-    exiting,
-    progress,
-    handlePauseOnHover,
-    handleResumeOnHover
-}) {
+const Notification = ({ id = "", title = "", onRemove, type = "success" }) => {
+  const [width, setWidth] = useState(100);
 
-    const NotificationType = {
-        SUCCESS: 'success',
-        ERROR: 'error',
-        WARNING: 'warning',
-        INFO: 'info',
-    }
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      onRemove(id);
+    }, 3000);
 
-    const IconMap = {
-        [NotificationType.SUCCESS]: '✅',
-        [NotificationType.ERROR]: '❌',
-        [NotificationType.WARNING]: '⚠️',
-        [NotificationType.INFO]: 'ℹ️',
-    }
+    // return () => clearTimeout(timeout);
+  }, [id, onRemove]);
 
-    let className = "toast-container"
-
-    if (exiting) {
-        className += " toast-exiting"
-    }
+  useEffect(() => {
+    let interval = setInterval(() => {
+      setWidth((prev) => {
+        if (prev <= 0) {
+          clearInterval(interval);
+          onRemove(id);
+        }
+        return prev - 10;
+      });
+    }, 300);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
 
-    const handleRemove = () => {
-        onUpdate(id);
-    }
-
-    const animationEndHandler = () => {
-        onRemove(id);
-    }
-
-    function handleMouseEnter() {
-        handlePauseOnHover(id);
-    }
-
-    function handleMouseLeave() {
-        handleResumeOnHover(id);
-    }
-
-    return (
-        <div className={className} data-position={position} data-type={type} onAnimationEnd={animationEndHandler} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
-            <button className='toast-cancel-btn' onClick={handleRemove} >&times;</button>
-            <div className="toast-content">
-                <div className="toast-icon">
-                    {IconMap[type]}
-                </div>
-                <div className="toast-main-content">
-                    <div className="toast-title">{title}</div>
-                    {description && <div className="toast-description">{description}</div>}
-                </div>
-            </div>
-            {cta && <div className="toast-cta">{cta}</div>}
-            <div className="toast-progress" data-type={type} style={{ width: `${progress}%` }}></div>
+  return (
+    <>
+      <div className={"toast-container"} data-type={type}>
+        <div className="toast-items">
+          <h4>{title}</h4>
+          <button onClick={() => onRemove(id)}>X</button>
         </div>
-    )
-}
+        <div className="toast-progress" style={{ width: `${width}%` }} />
+      </div>
+    </>
+  );
+};
 
 export default Notification;

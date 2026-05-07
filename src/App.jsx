@@ -1,49 +1,48 @@
-
-import './App.css'
-import { Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
-import Toast from './pages/Toast'
-import ToastProvider from './provider/ToastProvider'
-import InfiniteScroll from './pages/Infinite-scroll'
-import MineIntersectionObserver from './pages/Intersection-Observer'
-import PopoverRender from './pages/Popover'
-import { PopoverProvider } from './provider/PopoverProvider'
-import VirtualisedList from './pages/Virtualised-List'
-import ReusableAutoComplete from './pages/ReusableAutoComplete'
-import { Accordion } from './pages/Accordion'
-import { Tabs } from './pages/Tabs'
-import ReactMemo from './pages/ReactMemo'
-import { Dialog } from './pages/Dialog'
-import { DropDown } from './pages/Dropdown'
-import Carousel from './pages/Carousel'
-import ContentVisibility from './pages/ContentVisibility'
-
-
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import ToastProvider from "./components/toast/notificationProvider";
+import Toast from "./pages/Toast";
+import { StarRating } from "./pages/StarRating";
+import { TooltipPage } from "./pages/TooltipPage";
+import { PopoverPage } from "./pages/PopoverPage";
+import { VirtualListPage } from "./pages/VirtualListPage";
+import { InfiniteScrollPage } from "./pages/InfiniteScrollPage";
+import { ModalPages } from "./pages/ModalPage";
+import { DragDropPage } from "./pages/DragDropPage";
+import { NestedFolderPages } from "./pages/NestedFolder";
+import { AucompletePage } from "./pages/AutocompletePage";
+import { NestedCheckboxPage } from "./pages/NestedCheckboxPage";
+import { NestedCommentPage } from "./pages/NestedCommentPage";
+import { TodoPage } from "./pages/ToDoPage";
+import { KanbanPage } from "./pages/KanbanPage";
+import { OtpPage } from "./pages/OtpPage";
+import { CarouselPage } from "./pages/CarouselPage";
 
 function App() {
-
   return (
-    <PopoverProvider>
-      <ToastProvider>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/toast" element={<Toast />} />
-          <Route path="/infinite-scroll" element={<InfiniteScroll />} />
-          <Route path="/intersection-observer" element={<MineIntersectionObserver />} />
-          <Route path="/popover" element={<PopoverRender />} />
-          <Route path="/virtualised-list" element={<VirtualisedList />} />
-          <Route path='/autocomplete' element={<ReusableAutoComplete />} />
-          <Route path='/accordion' element={<Accordion />} />
-          <Route path='/tabs' element={<Tabs />} />
-          <Route path='/react-memo' element={<ReactMemo />} />
-          <Route path='/dialog' element={<Dialog />} />
-          <Route path='/dropdown' element={<DropDown />} />
-          <Route path='/carousel' element={<Carousel />} />
-          <Route path='/content-visibility' element={<ContentVisibility />} />
-        </Routes>
-      </ToastProvider>
-    </PopoverProvider>
-  )
+    <ToastProvider>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/toast" element={<Toast />} />
+        <Route path="/star" element={<StarRating/>}/>
+        <Route path="/tooltip" element={<TooltipPage/>}/>
+        <Route path="/popover" element={<PopoverPage/>}/>
+        <Route path="/virtual" element={<VirtualListPage/>}/>
+        <Route path="/scroll" element={<InfiniteScrollPage/>}/>
+        <Route path ="/modal" element={<ModalPages/>}/>
+        <Route path="/drag" element={<DragDropPage/>}/>
+        <Route path="/nested" element={<NestedFolderPages/>}/>
+        <Route path="/autocomplete" element={<AucompletePage/>}/>
+        <Route path="/checkbox" element={<NestedCheckboxPage/>}/>
+        <Route path="/comments" element={<NestedCommentPage/>}/>
+        <Route path="/todo" element={<TodoPage/>}/>
+        <Route path="/kanban" element={<KanbanPage/>}/>
+        <Route path = "/otp" element={<OtpPage/>}/>
+        <Route path="/carousel" element={<CarouselPage/>}/>
+      </Routes>
+    </ToastProvider>
+  );
 }
 
-export default App
+export default App;

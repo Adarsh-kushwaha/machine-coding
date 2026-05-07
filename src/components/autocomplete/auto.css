@@ -1,0 +1,31 @@
+.input{
+    width: 400px;
+    padding: 14px;
+    background-color: aliceblue;
+    color: black;
+    font-size: medium;
+    font-weight: 600;
+}
+
+.auto-list-container {
+    background-color: aliceblue;
+    height: 500px;
+    width: 400px;
+    padding: 14px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.auto-list{
+    background-color: aqua;
+    color: black;
+    padding: 14px;
+    border:solid 2px black;
+    width:90%
+
+
+}

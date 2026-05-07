@@ -1,0 +1,45 @@
+.star-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px
+}
+
+
+.star {
+    height: 50px;
+    width: 50px;
+    background: #ddd;
+    position: relative;
+    overflow: hidden;
+}
+
+.active[data-type="bad"] {
+    background: rgb(255, 6, 6) !important;
+}
+
+.active[data-type="average"] {
+    background: rgb(244, 223, 0) !important;
+}
+
+.active[data-type="good"] {
+    background: rgb(68, 255, 6) !important;
+}
+
+.hover {
+    background: rgb(255, 255, 119);
+}
+
+.star.full {
+    background: gold;
+}
+
+.star.half::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: gold;
+}

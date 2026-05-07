@@ -1,0 +1,59 @@
+.drag-conatiner {
+    width: 400px;
+    height: 600px;
+    align-items: center;
+    background-color: transparent;
+    overflow-x: hidden;
+    border: 2px solid #fff;
+}
+
+
+.drag-item{
+    background-color: rgb(255, 219, 172);
+    color: black;
+    padding: 8px;
+    width: 100%;
+    border: 1px solid;
+    height: 50px;
+    cursor: grab;
+}
+
+.drag-item:active{
+    cursor: grabbing;
+}
+
+.grabbing{
+    background-color: rgb(164, 76, 76);
+}
+
+.swapping{
+    background-color: rgb(97, 237, 97);
+}
+
+.bubble{
+    animation: bu 1s ease-in-out forwards;
+}
+
+
+@keyframes bu {
+  0% {
+    opacity: 0.8;
+    background-color: rgb(255, 145, 0);
+  }
+  25% {
+    opacity: 0.8;
+    background-color: rgb(255, 170, 50);
+  }
+  50% {
+    opacity: 0.9;
+    background-color: rgb(255, 190, 100);
+  }
+  75% {
+    opacity: 0.9;
+    background-color: rgb(255, 210, 140);
+  }
+  100% {
+    opacity: 1;
+    background-color: rgb(255, 219, 172);
+  }
+}

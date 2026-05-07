@@ -1,0 +1,79 @@
+.input-box {
+    display: flex;
+    align-items: center;
+    gap: 8px
+}
+
+.input-box input {
+    width: 200px;
+    height: 40px;
+    padding: 8px;
+    background-color: aliceblue;
+    border-radius: 14px;
+    border: solid 2px blueviolet;
+    color: black;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.input-box button {
+    background-color: aqua;
+    padding: 8px 34px;
+    border: none;
+    border-radius: 14px;
+    color: black;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.todolist-conatiner {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: 600px;
+    width: 400px;
+    background-color: antiquewhite;
+    padding: 8px;
+    color: black
+}
+
+.todo {
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    background-color: aquamarine;
+    padding: 8px 14px;
+    border-radius: 14px;
+}
+
+.todo-item {
+    display: flex;
+    gap: 4px;
+    color: black;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.todo button {
+    color: red;
+    background-color: transparent;
+    font-size: 18px;
+    font-weight: 500;
+    border: none;
+
+}
+
+.todo-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filter-button{
+      display: flex;
+    gap: 4px;  
+}
+
+.filter-button button[data-active = "true"]{
+    background-color: aqua;
+}
