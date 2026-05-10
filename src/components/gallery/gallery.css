@@ -1,0 +1,33 @@
+.gallery {
+  column-count: 4;
+  column-gap: 12px;
+  padding: 16px;
+}
+
+.gallery > * {
+  width: 100% !important;
+  margin-bottom: 12px;
+  break-inside: avoid;
+}
+
+/* Large tablets */
+@media (max-width: 1200px) {
+  .gallery {
+    column-count: 3;
+  }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  .gallery {
+    column-count: 2;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .gallery {
+    column-count: 1;
+    padding: 8px;
+  }
+}

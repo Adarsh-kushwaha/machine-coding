@@ -18,6 +18,7 @@ import { TodoPage } from "./pages/ToDoPage";
 import { KanbanPage } from "./pages/KanbanPage";
 import { OtpPage } from "./pages/OtpPage";
 import { CarouselPage } from "./pages/CarouselPage";
+import { GalleryPage } from "./pages/GalleryPage";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
         <Route path="/kanban" element={<KanbanPage/>}/>
         <Route path = "/otp" element={<OtpPage/>}/>
         <Route path="/carousel" element={<CarouselPage/>}/>
+        <Route path="/gallery" element={<GalleryPage/>}/>
       </Routes>
     </ToastProvider>
   );
