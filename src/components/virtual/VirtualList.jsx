@@ -2,51 +2,37 @@ import { useState } from "react";
 import "./virtualList.css";
 
 export const VirtualList = ({ data }) => {
-  
   const [scrollTop, setScrollTop] = useState(0);
 
-  const CONTAINER_HIEGHT = 500;
-  const ROW_HIEGHT = 50;
-  const OVERSCAN = 10;
+  const CONTAINER_HEIGHT = 500;
+  const ROW_HEIGHT = 50;
+  const OVERSCAN = 5;
 
   const handleScroll = (e) => {
     setScrollTop(e.target.scrollTop);
   };
 
-  const startIndex = Math.max(Math.floor(scrollTop / ROW_HIEGHT) - OVERSCAN, 0);
+  const startIndex = Math.max(Math.floor(scrollTop / ROW_HEIGHT) - OVERSCAN, 0)
+  const visibileCount = Math.ceil(CONTAINER_HEIGHT / ROW_HEIGHT);
+  const endIndex = Math.min(Math.floor(startIndex + visibileCount + OVERSCAN*2), data.length)
 
-  const endIndex = Math.min(
-    Math.floor((scrollTop + CONTAINER_HIEGHT) / ROW_HIEGHT) + OVERSCAN,
-    data.length,
-  );
-
-  const renderedCount = Math.min(Math.floor(CONTAINER_HIEGHT/ROW_HIEGHT) + OVERSCAN, data.length);
-
-  const newEndIndex = Math.min(Math.floor((CONTAINER_HIEGHT + scrollTop)/ ROW_HIEGHT) + OVERSCAN, data.length)
 
   return (
     <div
-      onScroll={handleScroll} 
+      onScroll={handleScroll}
       className="list-container"
-      style={{ height: `${CONTAINER_HIEGHT}px` }}
+      style={{ height: `${CONTAINER_HEIGHT}px`, overflowY: "auto" }}
     >
-      <div style={{ height: `${data.length * ROW_HIEGHT}px` }}>
-        <div style={{transform:`translateY(${startIndex*ROW_HIEGHT}px)`, height:`${CONTAINER_HIEGHT}px`, background:"#ff9090"}}>
-          {data.slice(startIndex, startIndex + renderedCount).map((item, index) => {
+      <div style={{ height: `${ROW_HEIGHT * data.length}px`, }}>
+        <div style={{transform: `translateY(${startIndex*ROW_HEIGHT}px)` }}>
+          {data.slice(startIndex, endIndex).map((item, index) => {
             return (
-              <div
-                className="item"
-                key={index}
-                style={{
-                  height: `${ROW_HIEGHT}px`,
-                }}
-              >
-                {item}
-              </div>
-            );
+              <div className="item" style={{ height: `${ROW_HEIGHT}px` }}>{item}</div>
+            )
           })}
         </div>
       </div>
+
     </div>
   );
 };
