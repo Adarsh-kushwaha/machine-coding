@@ -1,31 +1,47 @@
-.input{
-    width: 400px;
-    padding: 14px;
-    background-color: aliceblue;
-    color: black;
-    font-size: medium;
-    font-weight: 600;
-}
-
-.auto-list-container {
-    background-color: aliceblue;
-    height: 500px;
-    width: 400px;
-    padding: 14px;
-    overflow-y: auto;
-    overflow-x: hidden;
+.auto-input{
     display: flex;
     align-items: center;
-    flex-direction: column;
+    justify-content: center;
     gap: 4px;
+    margin: 14px;
 }
 
-.auto-list{
-    background-color: aqua;
+.auto-input input{
+    width: 300px;
+    height: 24px;
+    background-color: transparent;
+    border: 2px solid blue;
+    border-radius: 8px;
+    padding: 0px 8px;
+}
+.auto-input button{
+    background-color: red;
+    border: none;
+    padding: 4px;
+    border-radius: 8px;
+}
+
+.auto-suggestion{
+     display: flex;
+     flex-direction: column;
+     position: absolute;
+     top:50px;
+    width: 350px;
+    background-color: rgb(213, 255, 255);
+}
+
+.auto-suggestion button{
+    background: transparent;
     color: black;
-    padding: 14px;
-    border:solid 2px black;
-    width:90%
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+}
 
+.auto-suggestion button:hover{
+    background-color: rgb(137, 137, 255);
+}
 
+.auto-suggestion button[data-selected = "true"]{
+    background-color: greenyellow;
 }

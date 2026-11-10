@@ -1,5 +1,24 @@
-import { Otp } from "../components/otp/otp"
+import { useEffect, useRef } from "react";
+import { OtpComponent } from "../components/otp/otp"
 
 export const OtpPage = () => {
-   return <Otp/>
+
+   let  timeoutRef = useRef(null);
+
+   const onComplationHandle  =(val) => {
+      timeoutRef.current = setTimeout(() =>  alert(val), 100)
+   }
+
+   useEffect(() => {
+      return () => {
+         clearTimeout(timeoutRef)
+      }
+   }, [])
+
+   return (
+      <>
+      <h2 style={{textAlign:"center"}}>Enter OTP Here</h2>
+      <OtpComponent count={4} onOtpComplete={onComplationHandle}/>
+      </>
+   )
 }   

@@ -1,94 +1,64 @@
-import { useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import "./auto.css"
+import InputText from "./input"
+import Button from "./button"
+import Suggestion from "./suggestion"
 
-const data = Array.from({ length: 20 }, (v, i) => i + 1)
+function debounce(callback, delay) {
+    let timeOutId = ""
+    return function (...args) {
+        clearTimeout(timeOutId)
+        timeOutId = setTimeout(() => {
+            callback(...args)
+        }, delay)
+    }
+}
 
-const baseurl = "https://dummyjson.com/products/search"
 
-export const Autocomplete = () => {
+export const Autocomplete = ({ suggestions, onChange = () => { }, isLoading, isDebouncedInput }) => {
 
-    const [input, setInput] = useState("")
-    const [products, setProducts] = useState([])
-    const [debouncedVal, setDebouncedVal] = useState("")
-    const [isLoading, setIsLoading] = useState(false)
-    const [selected, setSelected] = useState("")
+    const [query, setQuery] = useState("");
+    const [showList, setShowList] = useState(false);
 
-    const containerRef = useRef(null)
+    //const debouncedFunction = useCallback(debounce(onChange, 300), [])
+    const debouncedFunction = useMemo(() => debounce(onChange, 300), [onChange])
 
-    const fetchData = async (query) => {
-
-        if (query === "") {
-            return;
+    const manageDebounced = (value) => {
+        if(isDebouncedInput){
+            debouncedFunction(value)
+        }else{
+            onChange(value)
         }
-
-        const url = `${baseurl}?q=${query}`
-        setIsLoading(true)
-        const api = await fetch(url);
-        const res = await api.json()
-        setProducts(res.products)
-        setIsLoading(false)
-        console.log(res.products)
     }
 
-    const inputHandler = (e) => {
-        setSelected("")
-        setInput(e.target.value)
+    const onQueryChange = (value) => {
+        setQuery(value)
+        setShowList(true);
+        manageDebounced(value)
     }
 
-    useEffect(() => {
-        fetchData(debouncedVal)
-    }, [debouncedVal])
-
-    useEffect(() => {
-
-        let timer = setTimeout(() => {
-            setDebouncedVal(input)
-        }, 300)
-
-        return () => {
-            clearTimeout(timer)
-        }
-
-
-    }, [input])
-
-    const handleSelect = (name) => {
-        setInput(name);
-        setSelected(name)
+    const handleClear = () => {
+        setQuery("")
     }
 
-    useEffect(() => {
-        const hanndleClickOutside = (e) => {
-            console.log(e.target, containerRef.current)
-            if(containerRef.current && !containerRef.current.contains(e.target)){
-                setSelected("")
-                setProducts([])
-                console.log("hello")
-            }
-        }
+    const handleSelect = (item) => {
+        setQuery(item);
+        manageDebounced(item)
+        setShowList(false);
+    }
 
-        document.addEventListener("mousedown", hanndleClickOutside);
-
-        return () => {
-            document.removeEventListener("mousedown", hanndleClickOutside)
-        }
-    },[])
+    const filteredSuggestions = suggestions?.filter((sug) => {
+        return sug?.toLowerCase()?.includes(query?.toLowerCase());
+    })
 
 
     return (
-        <div  style={{ display: "flex", alignItems: "center", flexDirection: "column", gap: "8px", background:"#b82626" }}>
-            <input type="text" className="input" onChange={inputHandler} value={input} />
-            <div ref={containerRef}>
-                {!selected &&  products.length > 0 ? (
-                    <div className="auto-list-container">
-                        {products?.map((item, index) => {
-                            return (
-                                <button className="auto-list" key={index} onClick={() => handleSelect(item.title)}>{item.title}</button>
-                            )
-                        })}
-                    </div>
-                ) : isLoading === true ? <div>Loading....</div> : !selected ? "No data availbke" : ""}
+        <div style={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <div className="auto-input">
+                <InputText value={query} onChange={onQueryChange} />
+                <Button label={"clear"} onClick={handleClear} />
             </div>
+            {!!showList && query.length > 0 && <Suggestion isLoading={isLoading} suggestions={filteredSuggestions} onSelect={handleSelect} query={query} />}
         </div>
     )
 }
