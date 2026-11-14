@@ -20,6 +20,8 @@ import { OtpPage } from "./pages/OtpPage";
 import { CarouselPage } from "./pages/CarouselPage";
 import { GalleryPage } from "./pages/GalleryPage";
 import TicTacToe from "./pages/TicTacToe";
+import TransitionHook from "./pages/TransitionHook";
+import ThemeSwitch from "./pages/ThemeSwitch";
 
 function App() {
   return (
@@ -44,6 +46,8 @@ function App() {
         <Route path="/carousel" element={<CarouselPage/>}/>
         <Route path="/gallery" element={<GalleryPage/>}/>
          <Route path="/tictac" element={<TicTacToe/>}/>
+         <Route path="/transition" element={<TransitionHook/>} />
+         <Route path="/theme" element={<ThemeSwitch/>}/>
       </Routes>
     </ToastProvider>
   );

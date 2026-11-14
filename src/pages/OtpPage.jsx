@@ -11,7 +11,7 @@ export const OtpPage = () => {
 
    useEffect(() => {
       return () => {
-         clearTimeout(timeoutRef)
+         clearTimeout(timeoutRef.current)
       }
    }, [])
 
